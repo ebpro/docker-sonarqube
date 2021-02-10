@@ -3,6 +3,7 @@ version: "2"
 services:
   sonarqube:
     build: sonarqube
+    image: brunoe/sonarqube:develop
     depends_on:
       - db
     ports:
