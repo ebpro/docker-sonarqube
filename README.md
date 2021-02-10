@@ -1,13 +1,15 @@
 # SonarQube
 
 ## Install
-Clone this repository.
-Copy the asset version 1.6.0 from https://github.com/mc1arke/sonarqube-community-branch-plugin/releases in the current directory.
+Clone this repository and run :
+
 ```console
 docker-compose up -d
 ```
 
-Browse http://localhost:9000 with admin/admin
+Read the docker-compose.yml for details.
+
+Browse http://localhost:9000 with admin/admin (need to be changed at first run).
 
 Generate a security token : http://localhost:9000/account/security/ 
 
