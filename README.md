@@ -33,6 +33,11 @@ Configure ~/.m2/settings.xml
 </settings>
 ```
 Sets the env variable SONAR_TOKEN
+```console 
+export SONAR_TOKEN=....
+```
+
+and run a maven compilation and a sonar analysis (see the [documentation](https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-maven/) for details).
 
 ```console
 mvn clean install
