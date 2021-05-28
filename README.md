@@ -7,6 +7,15 @@ Clone this repository and run :
 docker-compose up -d
 ```
 
+ElisaticSearch in sonarQube needs a specifi system configuration :
+```console
+sysctl -w vm.max_map_count=262144
+```
+to make it permanent  
+```console
+echo "vm.max_map_count=262144" >> /etc/sysctl.conf
+```
+
 Read the docker-compose.yml for details.
 
 Browse http://localhost:9000 with admin/admin (need to be changed at first run).
