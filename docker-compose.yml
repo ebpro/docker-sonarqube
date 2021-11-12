@@ -20,7 +20,7 @@ services:
       - sonarqube_logs:/opt/sonarqube/logs
       - sonarqube_temp:/opt/sonarqube/temp
   db:
-    image: postgres
+    image: postgres:13
     networks:
       - sonarnet
     environment:
