@@ -1,13 +1,24 @@
 # SonarQube
 
 ## Install
-Clone this repository.
-Copy the asset version 1.6.0 from https://github.com/mc1arke/sonarqube-community-branch-plugin/releases in the current directory.
+Clone this repository and run :
+
 ```console
 docker-compose up -d
 ```
 
-Browse http://localhost:9000 with admin/admin
+ElisaticSearch in sonarQube needs a specifi system configuration :
+```console
+sysctl -w vm.max_map_count=262144
+```
+to make it permanent  
+```console
+echo "vm.max_map_count=262144" >> /etc/sysctl.conf
+```
+
+Read the docker-compose.yml for details.
+
+Browse http://localhost:9000 with admin/admin (need to be changed at first run).
 
 Generate a security token : http://localhost:9000/account/security/ 
 
@@ -31,6 +42,11 @@ Configure ~/.m2/settings.xml
 </settings>
 ```
 Sets the env variable SONAR_TOKEN
+```console 
+export SONAR_TOKEN=....
+```
+
+and run a maven compilation and a sonar analysis (see the [documentation](https://docs.sonarqube.org/latest/analysis/scan/sonarscanner-for-maven/) for details).
 
 ```console
 mvn clean install
