@@ -1,4 +1,4 @@
-FROM sonarqube:9.2.1-community
+FROM sonarqube:9.2.2-community
 
 ENV SONARQUBE_HOME /opt/sonarqube
 
@@ -11,7 +11,8 @@ RUN wget -nv "https://github.com/checkstyle/sonar-checkstyle/releases/download/9
 	wget -nv "https://github.com/spotbugs/sonar-findbugs/releases/download/4.0.5/sonar-findbugs-plugin-4.0.5.jar" && \
 	wget -nv "https://github.com/edwinyangzh/sonar-java-i18n-checks/releases/download/v0.1.0/java-i18n-rules-0.1.0.jar" && \
 	wget -nv "https://github.com/dependency-check/dependency-check-sonar-plugin/releases/download/2.0.8/sonar-dependency-check-plugin-2.0.8.jar" && \
-	wget -nv "https://github.com/mc1arke/sonarqube-community-branch-plugin/releases/download/1.8.1/sonarqube-community-branch-plugin-1.8.1.jar" && \
-	cp sonarqube-community-branch-plugin-1.8.1.jar $SONARQUBE_HOME/lib/common && \ 
+	wget -nv "https://github.com/mc1arke/sonarqube-community-branch-plugin/releases/download/1.9.0/sonarqube-community-branch-plugin-1.9.0.jar" && \
     	mv *.jar $SONARQUBE_HOME/extensions/plugins && \
     	ls -lah $SONARQUBE_HOME/extensions/plugins
+RUN echo "sonar.web.javaAdditionalOpts=-javaagent:./extensions/plugins/sonarqube-community-branch-plugin-1.9.0.jar=web" >> /opt/sonarqube/conf/sonar.properties && \
+    echo "sonar.ce.javaAdditionalOpts=-javaagent:./extensions/plugins/sonarqube-community-branch-plugin-1.9.0.jar=ce" >>  /opt/sonarqube/conf/sonar.properties
