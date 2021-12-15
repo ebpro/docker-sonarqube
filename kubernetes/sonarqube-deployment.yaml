@@ -1,0 +1,57 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose -f ../docker-compose.yml convert
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: sonarqube
+  name: sonarqube
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: sonarqube
+    spec:
+      containers:
+      - env:
+        - name: SONAR_JDBC_PASSWORD
+          value: sonar
+        - name: SONAR_JDBC_URL
+          value: jdbc:postgresql://db:5432/sonar
+        - name: SONAR_JDBC_USERNAME
+          value: sonar
+        image: brunoe/sonarqube:develop
+        name: sonarqube
+        ports:
+        - containerPort: 9000
+        resources: {}
+        volumeMounts:
+        - mountPath: /opt/sonarqube/data
+          name: sonarqube-data
+        - mountPath: /opt/sonarqube/extensions
+          name: sonarqube-extensions
+        - mountPath: /opt/sonarqube/logs
+          name: sonarqube-logs
+        - mountPath: /opt/sonarqube/temp
+          name: sonarqube-temp
+      restartPolicy: Always
+      volumes:
+      - name: sonarqube-data
+        persistentVolumeClaim:
+          claimName: sonarqube-data
+      - name: sonarqube-extensions
+        persistentVolumeClaim:
+          claimName: sonarqube-extensions
+      - name: sonarqube-logs
+        persistentVolumeClaim:
+          claimName: sonarqube-logs
+      - name: sonarqube-temp
+        persistentVolumeClaim:
+          claimName: sonarqube-temp
+status: {}
