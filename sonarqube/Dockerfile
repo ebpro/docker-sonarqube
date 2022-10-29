@@ -1,4 +1,4 @@
-FROM sonarqube:9.2.4-community
+FROM sonarqube:9.7.1-community
 
 ENV SONARQUBE_HOME /opt/sonarqube
 

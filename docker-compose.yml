@@ -15,10 +15,10 @@ services:
       SONAR_JDBC_USERNAME: sonar
       SONAR_JDBC_PASSWORD: sonar
     volumes:
-      - sonarqube9_data:/opt/sonarqube/data
-      - sonarqube9_extensions:/opt/sonarqube/extensions
-      - sonarqube9_logs:/opt/sonarqube/logs
-      - sonarqube9_temp:/opt/sonarqube/temp
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_logs:/opt/sonarqube/logs
+      - sonarqube_temp:/opt/sonarqube/temp
   db:
     image: postgres:14
     networks:
@@ -27,17 +27,17 @@ services:
       POSTGRES_USER: sonar
       POSTGRES_PASSWORD: sonar
     volumes:
-      - postgresql14:/var/lib/postgresql
-      - postgresql14_data:/var/lib/postgresql/data
+      - pgsonar:/var/lib/postgresql
+      - pgsonar_data:/var/lib/postgresql/data
 
 networks:
   sonarnet:
     driver: bridge
 
 volumes:
-  sonarqube9_data:
-  sonarqube9_extensions:
-  sonarqube9_logs:
-  sonarqube9_temp:
-  postgresql14:
-  postgresql14_data:
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_logs:
+  sonarqube_temp:
+  pgsonar:
+  pgsonar_data:
