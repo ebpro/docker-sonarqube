@@ -64,12 +64,13 @@ or add a profile in `settings.xml` for a global configuration :
 mvn clean verify sonar:sonar
 ```
 
-if needed to run in two steps like in CI :
+To run it in two steps (like in CI) with multibranch :
 
 ```console
 mvn clean install
 mvn sonar:sonar  \
-	-D sonar.branch.name="$(git rev-parse --abbrev-ref HEAD|tr / _ )" \
+	-Dsonar.branch.name="$(git rev-parse --abbrev-ref HEAD|tr / _ )" \
 	-DskipTests=true \
+	-Dsonar.exclusions="**/module-info.java" \
 	--activate-profiles sonar
 ```
